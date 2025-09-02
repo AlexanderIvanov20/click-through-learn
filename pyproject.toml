@@ -13,6 +13,7 @@ authors = [
   { name = "Alexander Ivanov", email = "alexander.ivanov.289@gmail.com" },
 ]
 requires-python = ">=3.12"
+
 classifiers = [
   "Programming Language :: Python :: 3 :: Only",
   "Programming Language :: Python :: 3.12",
@@ -47,3 +48,81 @@ pytest = "^8.4.1"
 pytest-cov = "^6.2.1"
 pytest-xdist = "^3.8.0"
 ruff = "^0.12.11"
+
+[tool.ruff]
+target-version = "py312"
+
+line-length = 120
+exclude = [
+  ".git",
+  ".mypy_cache",
+  ".ruff_cache",
+  ".venv",
+  "build",
+  "data",
+  "dist",
+  "experiments/artifacts",
+  "notebooks",
+  "reports",
+]
+
+format.indent-style = "space"
+format.quote-style = "double"
+format.line-ending = "lf"
+format.skip-magic-trailing-comma = false
+format.docstring-code-format = true
+lint.select = [
+  "A",
+  "B",
+  "C4",
+  "E",
+  "F",
+  "I",   #
+  "N",
+  "PT",
+  "T20",
+  "UP",
+]
+
+[tool.mypy]
+ignore_missing_imports = true
+pretty = true
+python_version = "3.12"
+show_error_codes = true
+strict = true
+warn_redundant_casts = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+check_untyped_defs = true
+disallow_incomplete_defs = true
+disallow_untyped_defs = true
+
+disallow_untyped_calls = false
+disallow_untyped_returns = false
+
+files = [
+  "src",
+  "tests",
+]
+
+[[tool.mypy.overrides]]
+ignore_missing_imports = true
+module = [
+  "pandas.*",
+  "numpy.*",
+  "torch.*",
+  "lightgbm.*",
+  "xgboost.*",
+  "catboost.*",
+  "sklearn.*",
+  "fastfm2.*",
+  "pytorch_widedeep.*",
+  "pytorch_tabnet.*",
+  "captum.*",
+  "mlflow.*",
+  "optuna.*",
+  "shap.*",
+  "netcal.*",
+  "duckdb.*",
+]
