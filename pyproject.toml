@@ -1,0 +1,44 @@
+[project]
+authors = [
+  {name = "Alexander Ivanov", email = "alexander.ivanov.289@gmail.com"},
+]
+dependencies = [
+  "loguru (>=0.7.3,<0.8.0)",
+  "numpy (>=2.3.2,<3.0.0)",
+  "pandas (>=2.3.2,<3.0.0)",
+  "scikit-learn (>=1.7.1,<2.0.0)",
+  "matplotlib (>=3.10.6,<4.0.0)",
+  "tensorflow (>=2.20.0,<3.0.0)",
+  "polars (>=1.33.0,<2.0.0)",
+  "matplotlib (>=3.10.6,<4.0.0)",
+  "faker (>=37.6.0,<38.0.0)",
+  "mlflow (>=3.3.2,<4.0.0)",
+  "optuna (>=4.5.0,<5.0.0)",
+  "lightgbm (>=4.6.0,<5.0.0)",
+  "xgboost (>=3.0.4,<4.0.0)",
+  "catboost (>=1.2.8,<2.0.0)",
+  "plotly (>=6.3.0,<7.0.0)",
+  "torch (>=2.8.0,<3.0.0)",
+]
+description = "Analysis of ML and DL methods for CTR prediction"
+license = {text = "MIT License"}
+name = "click-through-learn"
+readme = "README.md"
+requires-python = ">=3.12"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+python = ">=3.12,<3.14"
+
+[tool.poetry.group.dev.dependencies]
+jupyterlab = "^4.4.6"
+mypy = "^1.17.1"
+pre-commit = "^4.3.0"
+pytest = "^8.4.1"
+pytest-cov = "^6.2.1"
+pytest-xdist = "^3.8.0"
+ruff = "^0.12.11"
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=2.0.0,<3.0.0"]
