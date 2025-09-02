@@ -1,0 +1,88 @@
+ci:
+  autofix_prs: true
+  autoupdate_schedule: monthly
+
+default_language_version:
+  python: python3.12
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-ast
+      - id: check-added-large-files
+        args: ["--maxkb=2048"]
+      - id: check-merge-conflict
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: pretty-format-json
+        args: ["--autofix", "--no-sort-keys"]
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.12.11
+    hooks:
+      - id: ruff
+        args: [--fix, --show-fixes]
+        types_or: [python, pyi]
+      - id: ruff-format
+        types_or: [python, pyi]
+
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.17.1
+    hooks:
+      - id: mypy
+        stages: [pre-push]
+        args:
+          - --config-file=pyproject.toml
+        additional_dependencies: []
+
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 1.9.1
+    hooks:
+      - id: nbqa-ruff
+        additional_dependencies: ["ruff==0.6.9"]
+        args: [--fix]
+        files: "\\.ipynb$"
+      - id: nbqa-mypy
+        additional_dependencies: ["mypy==1.11.2"]
+        files: "\\.ipynb$"
+        stages: [pre-push]
+
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.1
+    hooks:
+      - id: nbstripout
+        files: "\\.ipynb$"
+
+  - repo: https://github.com/executablebooks/mdformat
+    rev: 0.7.22
+    hooks:
+      - id: mdformat
+        additional_dependencies:
+          - mdformat-gfm
+          - mdformat-frontmatter
+        files: "\\.(md|markdown)$"
+
+  - repo: https://github.com/tox-dev/pyproject-fmt
+    rev: "v2.6.0"
+    hooks:
+      - id: pyproject-fmt
+
+  - repo: local
+    hooks:
+      - id: poetry-check
+        name: poetry check
+        entry: poetry
+        language: system
+        pass_filenames: false
+      - id: poetry-lock
+        name: poetry lock
+        entry: poetry
+        language: system
+        pass_filenames: false
