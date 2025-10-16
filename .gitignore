@@ -214,3 +214,5 @@ data/**
 # OS cruft
 .DS_Store
 Thumbs.db
+
+.vscode/
